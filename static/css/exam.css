@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+
+
+:root{
+    --var-main-color : #B57AE9;
+    --var-secend-color : #7A81E9;
+    --var-grey-color : #BDB9C1;
+    --var-input-color : #F2EEEE;
+    --var-font:'Cairo',sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.question {
+    text-align: center;
+    padding: 1rem;
+    font-size: 3.5rem;
+    font-family: var(--var-font);
+    color: var(--var-main-color);
+}
+
+.answers {
+    position: relative;
+    width: 100%;
+    margin: 30px auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 1rem;
+}
+
+.answers .answer {
+    width: 500px ;
+    padding: 1rem;
+    height: 100px;
+    background-color: var(--var-input-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 5px solid transparent;
+    transition: all 0.4s ease;
+}
+
+.answer p {
+    font-family: var(--var-font);
+    font-size: 1.5rem;
+    color: var(--var-main-color);
+}
+
+.answer.on {
+    border-color: var(--var-main-color);
+    box-shadow: 0px 6px 24px #B57AE950;
+}
+
+
+.next {
+    position: relative;
+    width: 500px;
+    margin: 60px auto;
+    display: block;
+    padding: 2rem;
+    font-family: var(--var-font);
+    background-color: var(--var-main-color);
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px #B57AE980;
+    cursor: pointer;
+}

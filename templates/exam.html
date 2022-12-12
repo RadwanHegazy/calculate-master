@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam </title>
+    <link rel="stylesheet" href="{% static 'css/exam.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <h1 class="question"></h1>
+
+    <div class="answers">
+
+        <div class="answer">
+            <p>4</p>
+        </div>
+        
+        <div class="answer">
+            <p>1</p>
+        </div>
+        
+        <div class="answer">
+            <p>2</p>
+        </div>
+
+        <div class="answer">
+            <p>8</p>
+        </div>
+
+    </div>
+
+    <button class="next">السؤال التالي</button>
+   
+   
+    <script>
+        
+
+        
+        var question_title = document.querySelector('.question');
+        var choices = document.querySelectorAll('.answer p');
+        var next = document.querySelector('.next');
+        var data = {
+            'questions':[],
+            'u_answers':[],
+        }
+        var n = 0;
+        
+        var questions = "{{ q }}".split('@');
+        var ids = "{{ id }}".split('@');
+
+        function Point (n){
+            
+        question_title.textContent = questions[0];
+
+        var x = 0;
+        choices.forEach( item => {
+            var m =  Math.floor(Math.random() * 50);
+            item.textContent = m;
+            document.querySelectorAll('.answer')[x].id = m;
+            x++
+            
+        })
+        
+        var new_c = Math.floor(Math.random() * 3 ) ;
+        choices[new_c].textContent = ids[n];
+        document.querySelectorAll('.answer')[new_c].id = ids[n];
+
+        }
+
+        Point(n=0);
+        document.querySelectorAll('.answer').forEach( item=>{
+            
+            
+            item.addEventListener('click',function(){
+                document.querySelectorAll('.answer').forEach( e =>{
+                    e.classList.remove('on')
+                })
+                this.classList.add('on')
+            })
+        })
+    
+
+        next.addEventListener('click',()=>{
+            n++
+            
+           
+            
+            if (n <=  questions.length){
+                
+                
+                var user_choice  = document.querySelector('.answer.on').id;
+                data.questions.push(question_title.textContent)
+                data.u_answers.push(user_choice)
+                Point(n=n)
+                question_title.textContent = questions[n];
+                console.log(question_title[n])
+                
+                document.querySelectorAll('.answer').forEach(item =>{
+                    item.classList.remove('on')
+                })
+                
+            }
+
+            if ( n == questions.length) {
+                
+                document.querySelectorAll('.answer').forEach( item =>{
+                    item.remove()
+                })
+
+                next.remove()
+
+                $.ajax({
+                    method:"POST",
+                    url:".",
+                    data:{
+                        'q':data['questions'],
+                        'a':data['u_answers']
+                    },
+                    success:function(server){
+                        window.location.href = '/congrats'
+                    }
+
+                })
+            }
+
+            
+        })        
+
+    </script>
+</body>
+</html>

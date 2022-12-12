@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي</title>
+    <link rel="stylesheet" href="{% static 'css/profie.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    
+    <div class="up">
+
+        <div class="profile">
+
+            <div class="data">
+                <div class="l">
+                    <h1>{{ request.user }}</h1>
+                    <small>{{ request.user.email }}</small>
+                </div>
+                <div class="r">
+                    <div class="b">
+                        {% if rank == 'None' %}
+                            <p># 0</p>
+                        {% else %}
+                            <p> # {{ rank }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="btns">
+                <!-- <a href="#">تعديل الحساب</a> -->
+                <a href="{% url 'logout' %}" style="width: 100%;">تسجيل الخروج</a>
+            </div>
+
+        </div>
+
+        <div class="enterExam">
+            <p>اختر مستوي الاختبار</p>
+
+            <div class="levels">
+
+                <div class="level on" id="easy">
+                    <p>سهل</p>
+                </div>
+
+                <div class="level" id="med">
+                    <p>متوسط</p>
+                </div>
+                
+                <div class="level" id="hard">
+                    <p>صعب</p>
+                </div>
+
+            </div>
+
+            <a href="/exam/easy/" class="enter">دخول الاختبار</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="down">
+
+        <div class="exams">
+
+            <div class="bar">
+                <p>جميع الاختبارات : {{ exams.count }}</p>
+                <p>جميع النقاط : {{ points }}</p>
+            </div>
+
+            <div class="all">
+
+
+                {% for exam in exams %}
+                    <div class="e">
+                        <p>{{ exam.total_points }}</p>
+                        <small>{{ exam.date|timesince  }} ago</small>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="board">
+
+            <div class="top"><p>الاسم</p><p>عدد النقاط</p></div>
+
+            <div class="users">
+                
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // options for enter the exam
+        var examLink = document.querySelector('.enter');
+        document.querySelectorAll('.level').forEach( item => {
+
+            item.addEventListener('click',function(){
+                
+                document.querySelectorAll('.level').forEach( a=>{
+                    a.classList.remove('on')
+                })
+
+                this.classList.toggle('on')
+                examLink.href = '/exam/' + this.id + '/';
+
+            })
+
+        })
+
+        // handel with leaderboards
+        var cuurentUser = "{{ request.user }}";
+        $.ajax({
+            method:"GET",
+            url:"{% url 'leader' %}",
+            success:function(data){
+                
+                $('.users').empty()
+                var leader_container = document.querySelector('.users');
+                
+                for (var leader = 0 ; leader < data.length; ){
+                    
+                    var user = data[leader]['user'];
+                    var points = data[leader]['points'];
+                    var rank = data[leader]['rank'];
+                    
+                    if ( user == cuurentUser){
+
+                        content = `<div class="user me">
+                           <p><small>${rank})</small> ${user}</p>
+                           <p>${points}</p> 
+                       </div>`;
+                    }else{
+                        content = `<div class="user">
+                           <p><small>${rank})</small> ${user}</p>
+                           <p>${points}</p> 
+                       </div>`;
+
+                    }
+
+                    leader_container.innerHTML += content;
+
+                    leader ++
+                }
+                
+            }
+        })
+    </script>
+
+</body>
+</html>

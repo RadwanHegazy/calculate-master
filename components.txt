@@ -1,0 +1,41 @@
+colors :
+    main color : #B57AE9
+    secend color : #7A81E9
+    grey color : #BDB9C1
+    input color : #F2EEEE
+
+
+
+
+fonts : 
+    @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+    main font : "Cairo", sans-serif;
+
+
+
+db design
+
+
+level:
+    -> easy
+    
+    -> medium
+    
+    -> hard
+
+
+
+exam :
+    id
+    level ( hard, easy, medium )
+    user  ( client )
+    total_points
+    date
+
+
+point : 
+    for_exam
+    question 
+    answer
+    
+

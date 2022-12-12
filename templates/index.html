@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Calculate Master</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+
+    <div class="welcome">
+        <div class="bg"></div>
+        <div class="l">
+            <img src="{% static 'images/front.png' %}" alt="">
+            <div class="shadow"></div>
+        </div>
+
+        <div class="r">
+            
+            <h1>هل انت جاهز للرياضيات</h1>
+            
+            <ul>
+                <li><i class="fa fa-arrow-left"></i><p>يوجد  اكثر من 1000 معادلة رياضية</p></li>
+                <li><i class="fa fa-arrow-left"></i><p>مستويات مختلفة لمعادلات الرياضيات</p></li>
+                <li><i class="fa fa-arrow-left"></i><p>اكتسب خبرة في حل المعادلات </p></li>
+                <li><i class="fa fa-arrow-left"></i><p>كن من متصدري القائمة الذهبية</p></li>
+            </ul>
+            
+            <a href="{% url 'login' %}" class="clickable">التسجيل</a>
+            
+        </div>
+
+
+    </div>
+
+    
+    <div class="boxes">
+
+        <div class="box">
+            <img src="{% static 'images/gold_list.png' %}" alt="">
+            <p>قم بحل معادلات واجمع النقاط  حتي تصل لقمة القائمة الذهبية</p>
+        </div>
+
+        <div class="box">
+            <img src="{% static 'images/2.png' %}"  alt="">
+            <p>يمكنك بواسطة موقعنا تطوير مهاراتك الحسابية لحل المسائل الرياضية </p>
+        </div>
+
+        <div class="box">
+            <img src="{% static 'images/invite.png' %}"  alt="">
+            <p>قم بدعوة جميع أصحابك لمنافستهم حتي تخوض التجربة الممتعة  </p>
+        </div>
+
+    </div>
+
+
+    <div class="sperator"></div>
+
+
+    <div class="owner">
+        <p>تم تصميم وبناء الموقع بواسطة <a target="_blank" href="https://www.facebook.com/profile.php?id=100047848722892">رضوان جابر حجازي</a> </p>
+    </div>
+
+    <script>
+
+        document.querySelector('.clickable').addEventListener('click',function(){
+            this.classList.add('click')
+            window.location.href = this.href;
+        })
+
+    </script>
+</body>
+</html>
