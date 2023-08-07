@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+
+
+:root{
+    --var-main-color : #B57AE9;
+    --var-secend-color : #7A81E9;
+    --var-grey-color : #BDB9C1;
+    --var-input-color : #F2EEEE;
+    --var-font:'Cairo',sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    flex-direction: row;
+}
+
+
+
+.page .l, .page .r {
+    width: 400px;
+    position: relative;
+}
+
+/* right side */
+
+.r {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.r img {
+    width: 70%;
+    height: auto;
+}
+
+
+/* left side */
+
+.l {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.l .box {
+    width: 90%;
+    height: auto;
+    padding: 1rem;
+    box-shadow: 0px 3px 24px #B57AE963;
+    border-right: 5px solid var(--var-main-color);
+    
+}
+
+.l .box h1{
+    font-family: var(--var-font);
+    color: var(--var-main-color);
+    text-align: center;
+}
+
+.box .in {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--var-input-color);
+    text-align: right;
+    height: auto;
+    padding: 0.3rem;
+    margin-top: 15px;
+}
+
+.box .in small {
+    font-family: var(--var-font);
+    color: var(--var-main-color);
+}
+
+.in input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: #B57AE990;
+}
+
+
+.btns {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btns a {
+    font-family: var(--var-font);
+    color: var(--var-grey-color);
+    text-decoration: none;
+}
+
+.btns button {
+    padding: 11px;
+    font-family: var(--var-font);
+    background-color: var(--var-main-color);
+    border: none;
+    outline: none;
+    color: #fff;
+    width: 100px;
+    border-radius: 7px;
+    font-weight: bold;
+    box-shadow: 0px 11px 24px #00000016 ;
+    cursor: pointer;
+}
+
+
+
+/* Handel error msg */
+
+.msg {
+    position: absolute;
+    width: 500px;
+    font-family: var(--var-font);
+    background-color:rgba(245, 14, 60, 0.137);
+    color: rgb(255, 0, 51);
+    border: 2px solid rgb(255, 0, 51);
+    
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30px;
+    padding: 1rem;
+    text-align: center;
+    z-index: 2;
+    
+}
